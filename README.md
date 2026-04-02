@@ -27,7 +27,7 @@ The agent returns the top‑k similar cases, their fraud labels, and a local fra
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/claranatalie01/PROJECT.git
 cd your-repo
 ```
 
