@@ -1,5 +1,4 @@
 
-```markdown
 # Fraud Detection Retriever Agent
 
 This project implements a **retriever agent** that finds the most similar past credit applications for a given new application. It uses:
@@ -16,7 +15,7 @@ The agent returns the top‑k similar cases, their fraud labels, and a local fra
 ## 📦 Requirements
 
 - **Docker** (to run the PostgreSQL container)  
-- **Python 3.9+** with packages: `pandas`, `numpy`, `psycopg2`, `flask`, `joblib`, `scikit-learn`, `jupyter`  
+- **Python 3.9+** with packages: `pandas`, `numpy`, `psycopg2`, `flask`, `joblib`, `scikit-learn`, `jupyter`, `sqlalchemy`  
 - At least **8 GB RAM** (16 GB recommended for 1 million rows)  
 - `base.csv` – the BAF dataset (1 million rows, 32 columns) – **not included in this repository** (place it in the project folder)
 
@@ -75,11 +74,31 @@ Execute all cells **in order**. The notebook will:
 
 ### Verify the data
 
+You can verify the data using either the Docker command line or the provided notebook `run_dataset.ipynb`.
+
+**Option 1 – using `docker exec`:**
+
 ```bash
 docker exec -it postgres psql -U postgres -c "SELECT COUNT(*) FROM applications;"
 ```
 
 Should return `1000000`.
+
+**Option 2 – using the `run_dataset.ipynb` notebook:**
+
+Open and run the notebook:
+
+```bash
+jupyter notebook run_dataset.ipynb
+```
+
+It will display:
+- Total row count
+- Fraud distribution (fraud vs. legitimate)
+- Dimension of the feature vectors
+- A sample of the metadata for a few applications
+
+This confirms that the data is loaded correctly and the vectors have the expected shape.
 
 ---
 
@@ -217,6 +236,7 @@ docker rm postgres
 .
 ├── base.csv                       # (not committed – large file)
 ├── preprocess_load_data.ipynb     # Combined preprocessing + loading
+├── run_dataset.ipynb              # Verification notebook (check data after loading)
 ├── A2A.py                         # Flask retriever agent
 ├── test_agent.py                  # Example test request
 ├── find.py                        # Finds typical fraudulent cases for testing
@@ -250,4 +270,3 @@ docker rm postgres
 - `base.csv` is too large for GitHub; place it manually in the project folder before running the notebook.
 
 ---
-
