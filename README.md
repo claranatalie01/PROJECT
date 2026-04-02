@@ -28,7 +28,7 @@ The agent returns the top‑k similar cases, their fraud labels, and a local fra
 
 ```bash
 git clone https://github.com/claranatalie01/PROJECT.git
-cd your-repo
+cd PROJECT
 ```
 
 ### 2. Start the PostgreSQL + pgvector container
